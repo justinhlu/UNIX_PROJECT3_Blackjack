@@ -5,10 +5,13 @@
 #http://stackoverflow.com/questions/2518753/best-way-to-implement-a-deck-for-a-card-game-in-python
 import random
 import itertools
-SUITS = 'cdhs'
+#SUITS = 'cdhs'
 RANKS = '23456789TJQKA'
-DECK = tuple(''.join(card) for card in itertools.product(RANKS, SUITS))
+DECK = tuple(''.join(card) for card in itertools.product(RANKS))
+
 hand = random.sample(DECK, 5)
 print hand
 #just testing
 print hand.pop()
+print hand
+#need to remove cards from deck to ensure no duplicates if we're playing multiple rounds
