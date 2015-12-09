@@ -21,7 +21,20 @@ print "Dealer"
 print (hand_dealer)
 print (hand_dealer[1])
 dealerValue=0
-
+for index in range(len(hand_dealer)):
+    if(hand_dealer[index]=='T'):
+        dealerValue+=10
+    elif(hand_dealer[index]=='J'):
+        dealerValue+=10
+    elif(hand_dealer[index]=='K'):
+        dealerValue+=10
+    elif(hand_dealer[index]=='Q'):
+        dealerValue+=10
+    elif(hand_dealer[index]=='A'):
+        dealerValue+=1
+    else:
+        dealerValue += int(hand_dealer[index])
+print dealerValue
 
 
 #need to remove cards from deck to ensure no duplicates if we're playing multiple rounds
