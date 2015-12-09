@@ -13,8 +13,17 @@ DECK = tuple(''.join(card) for card in itertools.product(RANKS))
 
 hand_player = random.sample(DECK, 2)
 hand_dealer = random.sample(DECK, 2)
+print "Player"
 print (hand_player)
+hand_player.append(random.sample(DECK, 1)[0])
+print (hand_player)
+
+print "Dealer"
 print (hand_dealer)
+print (hand_dealer[1])
+dealerValue=0
+
+
 
 #need to remove cards from deck to ensure no duplicates if we're playing multiple rounds
 
