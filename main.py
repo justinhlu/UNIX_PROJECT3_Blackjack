@@ -7,7 +7,6 @@ import random
 import sys
 import os
 import itertools
-#SUITS = 'cdhs'
 RANKS = '23456789TJQKA'
 DECK = tuple(''.join(card) for card in itertools.product(RANKS))
 
@@ -18,36 +17,24 @@ print (hand_dealer)
 
 #need to remove cards from deck to ensure no duplicates if we're playing multiple rounds
 
-#define Hand class
-class Hand:
-    def __init__(self):
-        pass #pass statement indicates code needs to go here
-    def __str__(self):
-        pass
-    def add(self):
-        pass
-    def getVal(self):
-        pass
 
-class Deck:
-    def __init__(self):
-        pass
-    def __str__(self):
-        pass
-    def deal(self):
-        pass
-    def shuffle(self):
-        pass
 #Functions for player actions
 
 def deal():
     pass
 
-def hit():
-    pass
+def hit(hand):
+    #add a new card to the hand
+    newCard = random.sample(DECK, 1)
+    hand.append(newCard)
+    print hand
+
+def bust (player):
+    print 'Bust!'
+    print player + 'loses!'
 
 def stand():
     pass
 
-def draw():
+def newBlackjackGame():
     pass
