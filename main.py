@@ -55,10 +55,7 @@ def stand():
 
 def newBlackjackGame():
     continuePlaying = True
-    isPlayerBust = False
-    isHouseBust = False
-    playerTurnOver = False
-    dealerTurnOver = False
+
     dealerValue=0
     playerValue=0
     gamesWon = 0
@@ -66,7 +63,10 @@ def newBlackjackGame():
 
     # PLAYER'S TURN
     while (continuePlaying == True):
-
+        isPlayerBust = False
+        isHouseBust = False
+        playerTurnOver = False
+        dealerTurnOver = False
         hand_player = random.sample(DECK, 2)
         hand_dealer = random.sample(DECK, 2)
         print "Player"
