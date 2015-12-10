@@ -54,72 +54,81 @@ def stand():
     pass
 
 def newBlackjackGame():
+    continuePlaying = True
     isPlayerBust = False
     isHouseBust = False
     playerTurnOver = False
     dealerTurnOver = False
     dealerValue=0
     playerValue=0
-    hand_player = random.sample(DECK, 2)
-    hand_dealer = random.sample(DECK, 2)
-    print "Player"
-    print (hand_player)
-    playerValue = getHandValue(hand_player)
-    print playerValue
+    gamesWon = 0
 
-    print "Dealer"
-    print (hand_dealer)
-    print (hand_dealer[1])
-    dealerValue = getHandValue(hand_dealer)
 
     # PLAYER'S TURN
+    while (continuePlaying == True):
 
-    while (playerTurnOver == False):
-         action = raw_input ('PLAYERS TURN: Would you like to hit or stand? Type "hit" or "stand" or "help" ')
-         if (action == 'help'):
-            print 'T = 10, J = 10, Q = 10, K = 10, A can be 1 or 11'
-         elif (action == 'hit'):
-            hit (hand_player)
-            playerValue = getHandValue(hand_player)
-            if (playerValue > 21):
-                isPlayerBust = True
-                bust ('Player')
-                break
-         elif (action == 'stand'):
-            playerTurnOver = True
-         else:
-            print 'INVALID ACTION'
+        hand_player = random.sample(DECK, 2)
+        hand_dealer = random.sample(DECK, 2)
+        print "Player"
+        print (hand_player)
+        playerValue = getHandValue(hand_player)
+        print playerValue
+
+        print "Dealer"
+        print (hand_dealer[1])
+        dealerValue = getHandValue(hand_dealer)
+        while (playerTurnOver == False):
+            action = raw_input ('PLAYERS TURN: Would you like to hit or stand? Type "hit", "stand", "help." ')
+            if (action == 'help'):
+                print 'T = 10, J = 10, Q = 10, K = 10, A can be 1 or 11'
+            elif (action == 'hit'):
+                hit (hand_player)
+                playerValue = getHandValue(hand_player)
+                if (playerValue > 21):
+                    isPlayerBust = True
+                    bust ('Player')
+                    break
+            elif (action == 'stand'):
+                playerTurnOver = True
+            else:
+                print 'INVALID ACTION'
     # DEALER'S TURN
-    while (dealerTurnOver == False and isPlayerBust != True):
-        dealerValue = getHandValue (hand_dealer)
-        if (dealerValue < 17): # dealer must hit if hand value is lower than 17
-            hit(hand_dealer)
-            dealerValue = getHandValue(hand_dealer)
-            if (dealerValue > 21):
-                isHouseBust = True
-                bust('Dealer')
-                break
+        while (dealerTurnOver == False and isPlayerBust != True):
+            dealerValue = getHandValue (hand_dealer)
+            if (dealerValue < 17): # dealer must hit if hand value is lower than 17
+                hit(hand_dealer)
+                dealerValue = getHandValue(hand_dealer)
+                if (dealerValue > 21):
+                    isHouseBust = True
+                    bust('Dealer')
+                    break
+                else:
+                    dealerTurnOver = True
+            elif (dealerValue == 21): # dealer has blackjack
+                dealerTurnOver = True
             else:
                 dealerTurnOver = True
-        elif (dealerValue == 21): # dealer has blackjack
-            dealerTurnOver = True
+
+        dealerValue = getHandValue(hand_dealer)
+        playerValue = getHandValue(hand_player)
+
+        print 'Value of Player Hand: ' + str(playerValue)
+        print 'Value of Dealer Hand: ' + str(dealerValue)
+
+        if (playerValue > dealerValue and isPlayerBust == False):
+            print 'Player wins!'
+            gamesWon+=1
+            print 'Games won by Player: ' + str(gamesWon)
+        elif (isHouseBust == True):
+            print 'Player wins!'
+            gamesWon+=1
+            print 'Games won by Player: ' + str(gamesWon)
         else:
-            dealerTurnOver = True
+            print 'House wins!'
 
-    dealerValue = getHandValue(hand_dealer)
-    playerValue = getHandValue(hand_player)
-
-    print 'Value of Player Hand: ' + str(playerValue)
-    print 'Value of Dealer Hand: ' + str(dealerValue)
-
-    if (playerValue > dealerValue and isPlayerBust == False):
-        print 'Player wins!'
-
-    elif (isHouseBust == True):
-        print 'Player wins!'
-
-    else:
-        print 'House wins!'
-
+        cont = raw_input('Would you like to continue playing? Type "No" to walk away or "Yes" to continue')
+        if (cont == 'No' or cont == ' No' or cont == 'no'):
+            continuePlaying = False
+            break
 newBlackjackGame()
 #test committ 7:35
