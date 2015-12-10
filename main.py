@@ -27,7 +27,8 @@ def hit(hand):
 def bust (player):
     #if player hand value is over 21, they lose
     print 'Bust!'
-    print player + 'loses!'
+    print player + ' loses!'
+
 
 def getHandValue(hand):
     value = 0
@@ -53,8 +54,8 @@ def stand():
     pass
 
 def newBlackjackGame():
-
-    bust = False
+    isPlayerBust = False
+    isHouseBust = False
     playerTurnOver = False
     dealerTurnOver = False
     dealerValue=0
@@ -79,6 +80,11 @@ def newBlackjackGame():
             print 'T = 10, J = 10, Q = 10, K = 10, A can be 1 or 11'
          elif (action == 'hit'):
             hit (hand_player)
+            playerValue = getHandValue(hand_player)
+            if (playerValue > 21):
+                isPlayerBust = True
+                bust ('Player')
+                break
          elif (action == 'stand'):
             playerTurnOver = True
          else:
@@ -90,6 +96,7 @@ def newBlackjackGame():
             hit(hand_dealer)
             dealerValue = getHandValue(hand_dealer)
             if (dealerValue > 21):
+                isHouseBust = True
                 bust('Dealer')
                 break
             else:
@@ -105,7 +112,10 @@ def newBlackjackGame():
     print 'Value of Player Hand: ' + str(playerValue)
     print 'Value of Dealer Hand: ' + str(dealerValue)
 
-    if (playerValue > dealerValue):
+    if (playerValue > dealerValue and isPlayerBust == False):
+        print 'Player wins!'
+
+    elif (isHouseBust == True):
         print 'Player wins!'
 
     else:
