@@ -72,8 +72,10 @@ def newBlackjackGame():
     # PLAYER'S TURN
 
     while (playerTurnOver == False):
-         action = raw_input ('PLAYERS TURN: Would you like to hit or stand? Type "hit" or "stand" ')
-         if (action == 'hit'):
+         action = raw_input ('PLAYERS TURN: Would you like to hit or stand? Type "hit" or "stand" or "help" ')
+         if (action == 'help'):
+            print 'T = 10, J = 10, Q = 10, K = 10, A can be 1 or 11'
+         elif (action == 'hit'):
             hit (hand_player)
          elif (action == 'stand'):
             playerTurnOver = True
