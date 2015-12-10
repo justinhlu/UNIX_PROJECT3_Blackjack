@@ -143,9 +143,14 @@ def newBlackjackGame():
             PlayerMoney -= int(bet)
             print 'You have ${0:0.2f}'.format(PlayerMoney)
 
-        cont = raw_input('Would you like to continue playing? Type "No" to walk away or "Yes" to continue')
-        if (cont == 'No' or cont == ' No' or cont == 'no'):
+        if(PlayerMoney<=0):
+            print 'Out of Money!'
             continuePlaying = False
             break
+        else:
+            cont = raw_input('Would you like to continue playing? Type "No" to walk away or "Yes" to continue')
+            if (cont == 'No' or cont == ' No' or cont == 'no'):
+                continuePlaying = False
+                break
 newBlackjackGame()
 #test committ 7:35
