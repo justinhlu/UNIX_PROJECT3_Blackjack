@@ -9,6 +9,7 @@ import random
 import sys
 import os
 import itertools
+PlayerMoney = 1000
 RANKS = '23456789TJQKA'
 DECK = tuple(''.join(card) for card in itertools.product(RANKS))
 
@@ -63,6 +64,15 @@ def newBlackjackGame():
 
     # PLAYER'S TURN
     while (continuePlaying == True):
+        global PlayerMoney
+        print 'You have ${0:0.2f}'.format(PlayerMoney)
+        bet = raw_input ('PLAYERS TURN: How much money do you want to bet? ')
+        while(int(bet)>PlayerMoney):
+            print "Can't bet that much"
+            bet = raw_input ('PLAYERS TURN: How much money do you want to bet? ')
+
+
+
         isPlayerBust = False
         isHouseBust = False
         playerTurnOver = False
@@ -84,6 +94,7 @@ def newBlackjackGame():
             elif (action == 'hit'):
                 hit (hand_player)
                 playerValue = getHandValue(hand_player)
+                print playerValue
                 if (playerValue > 21):
                     isPlayerBust = True
                     bust ('Player')
@@ -119,12 +130,18 @@ def newBlackjackGame():
             print 'Player wins!'
             gamesWon+=1
             print 'Games won by Player: ' + str(gamesWon)
+            PlayerMoney += int(bet)
+            print 'You have ${0:0.2f}'.format(PlayerMoney)
         elif (isHouseBust == True):
             print 'Player wins!'
             gamesWon+=1
             print 'Games won by Player: ' + str(gamesWon)
+            PlayerMoney += int(bet)
+            print 'You have ${0:0.2f}'.format(PlayerMoney)
         else:
             print 'House wins!'
+            PlayerMoney -= int(bet)
+            print 'You have ${0:0.2f}'.format(PlayerMoney)
 
         cont = raw_input('Would you like to continue playing? Type "No" to walk away or "Yes" to continue')
         if (cont == 'No' or cont == ' No' or cont == 'no'):
