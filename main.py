@@ -90,7 +90,7 @@ def newBlackjackGame():
          else:
             print 'INVALID ACTION'
     # DEALER'S TURN
-    while (dealerTurnOver == False):
+    while (dealerTurnOver == False and isPlayerBust != True):
         dealerValue = getHandValue (hand_dealer)
         if (dealerValue < 17): # dealer must hit if hand value is lower than 17
             hit(hand_dealer)
