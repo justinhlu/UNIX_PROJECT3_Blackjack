@@ -87,7 +87,7 @@ def newBlackjackGame():
         print "Player"
         print (hand_player)
         playerValue = getHandValue(hand_player)
-        print playerValue
+
 
         print "Dealer"
         print (hand_dealer[1])
