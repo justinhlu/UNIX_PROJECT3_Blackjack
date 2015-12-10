@@ -44,6 +44,8 @@ def getHandValue(hand):
             value+=1
         else:
             value += int(hand[index])
+    if('A' in hand and value<=11):
+            value+=10
 
     return value
 
