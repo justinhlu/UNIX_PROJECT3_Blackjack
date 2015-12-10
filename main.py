@@ -67,10 +67,15 @@ def newBlackjackGame():
         global PlayerMoney
         print 'You have ${0:0.2f}'.format(PlayerMoney)
         bet = raw_input ('PLAYERS TURN: How much money do you want to bet? ')
+        while (bet.isdigit()==False):
+            print "not a number"
+            bet = raw_input ('PLAYERS TURN: How much money do you want to bet? ')
         while(int(bet)>PlayerMoney):
             print "Can't bet that much"
             bet = raw_input ('PLAYERS TURN: How much money do you want to bet? ')
-
+            while (bet.isdigit()==False):
+                print "not a number"
+                bet = raw_input ('PLAYERS TURN: How much money do you want to bet? ')
 
 
         isPlayerBust = False
